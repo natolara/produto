@@ -81,7 +81,7 @@ public class SiteEscolaApplication implements CommandLineRunner {
 		cli1.getTelefones().addAll(Arrays.asList("164655645", "545645565"));
 		
 		Endereco e1 = new Endereco(null, "rua Flores", "300", "Apto 303", "Jardim", "15642314", cli1, c1);
-		Endereco e2 = new Endereco(null, "Av matos", "323", "Apto 03", "vila maroa", "15645646599", cli1, c2);
+		Endereco e2 = new Endereco(null, "Av matos", "323", "Apto 03", "vila Maria", "15645646599", cli1, c2);
 		
 		cli1.getEnderecos().addAll(Arrays.asList(e1,e2));
 		
