@@ -13,6 +13,7 @@ import com.site.escola.domain.Cidade;
 import com.site.escola.domain.Cliente;
 import com.site.escola.domain.Endereco;
 import com.site.escola.domain.Estado;
+import com.site.escola.domain.ItemPedido;
 import com.site.escola.domain.Pagamento;
 import com.site.escola.domain.PagamentoComBoleto;
 import com.site.escola.domain.PagamentoComCartao;
@@ -25,6 +26,7 @@ import com.site.escola.repositories.CidadeRepository;
 import com.site.escola.repositories.ClienteRepository;
 import com.site.escola.repositories.EnderecoRepository;
 import com.site.escola.repositories.EstadoRepository;
+import com.site.escola.repositories.ItemPedidoRepository;
 import com.site.escola.repositories.PagamentoRepository;
 import com.site.escola.repositories.PedidoRepository;
 import com.site.escola.repositories.ProdutoRepository;
@@ -48,6 +50,8 @@ public class SiteEscolaApplication implements CommandLineRunner {
 	private PedidoRepository pedidoRepository;
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
+	@Autowired 
+	private ItemPedidoRepository itemPedidoRepository;
 	
 
 	public static void main(String[] args) {
@@ -114,6 +118,20 @@ public class SiteEscolaApplication implements CommandLineRunner {
 		
 		pedidoRepository.saveAll(Arrays.asList(ped1,ped2));
 		pagamentoRepository.saveAll(Arrays.asList(pagto1,pagto2));
+		
+		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 2000.00);
+		ItemPedido ip2 = new ItemPedido(ped1, p3, 0.00, 2, 80.00);
+		ItemPedido ip3 = new ItemPedido(ped2, p2, 100.00, 1, 800.00);
+		
+		ped1.getItens().addAll(Arrays.asList(ip1,ip2));
+		ped2.getItens().addAll(Arrays.asList(ip3));
+		
+		p1.getItens().addAll(Arrays.asList(ip1));
+		p2.getItens().addAll(Arrays.asList(ip3));
+		p3.getItens().addAll(Arrays.asList(ip2));	
+		
+		itemPedidoRepository.saveAll(Arrays.asList(ip1,ip2,ip3));
+		
 		
 		
 	}
